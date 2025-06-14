@@ -20,8 +20,8 @@ jobs:
       - name: Run JMeter in Docker
         run: |
           docker run --rm \
-            -v ${{ github.workspace }}:/test \
-            -w /test \
+            -v ${{ github.workspace }}:/Testplans \
+            -w /Testplans \
             justb4/jmeter \
             -n -t ${{ github.event.inputs.test_plan }} \
             -l result.jtl \
