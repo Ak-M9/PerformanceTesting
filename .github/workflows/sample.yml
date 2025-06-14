@@ -1,0 +1,33 @@
+name: sample
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_plan:
+        description: 'JMeter test plan file (.jmx)'
+        required: true
+        default: 'your_test_plan.jmx'
+      extra_args:
+        description: 'Extra JMeter CLI arguments'
+        required: false
+        default: ''
+
+jobs:
+  run-jmeter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run JMeter in Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/test \
+            -w /test \
+            justb4/jmeter \
+            -n -t ${{ github.event.inputs.test_plan }} \
+            -l result.jtl \
+            ${{ github.event.inputs.extra_args }}
+            
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-results
+          path: result.jtl
