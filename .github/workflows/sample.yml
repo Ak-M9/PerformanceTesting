@@ -29,7 +29,7 @@ jobs:
       run: |
         docker run --rm \
           -v ${{ github.workspace }}/tests:/tests \
-          ghcr.io/apache/jmeter:latest \
+          justb4/jmeter \
           -n -t /Testplans/jpet.jmx -l result.jtl
 
     - name: Upload Test Results
