@@ -28,7 +28,7 @@ jobs:
     - name: Run JMeter Test with Latest Image
       run: |
         docker run --rm \
-          -v ${{ github.workspace }}/tests:/tests \
+          -v ${{ github.workspace }}/Testplans:/Testplans \
           justb4/jmeter \
           -n -t /Testplans/load_test.jmx -l result.jtl
 
