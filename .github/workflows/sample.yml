@@ -1,33 +1,39 @@
 name: sample
 
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       test_plan:
+#         description: 'JMeter test plan file (.jmx)'
+#         required: true
+#         default: 'your_test_plan.jmx'
+#       extra_args:
+#         description: 'Extra JMeter CLI arguments'
+#         required: false
+#         default: ''
+
 on:
-  workflow_dispatch:
-    inputs:
-      test_plan:
-        description: 'JMeter test plan file (.jmx)'
-        required: true
-        default: 'your_test_plan.jmx'
-      extra_args:
-        description: 'Extra JMeter CLI arguments'
-        required: false
-        default: ''
+  push:
+    branches:
+      - main
 
 jobs:
-  run-jmeter:
+  jmeter-latest-run:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Run JMeter in Docker
-        run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/Testplans \
-            -w /Testplans \
-            justb4/jmeter \
-            -n -t ${{ github.event.inputs.test_plan }} \
-            -l result.jtl \
-            ${{ github.event.inputs.extra_args }}
-            
-      - uses: actions/upload-artifact@v4
-        with:
-          name: jmeter-results
-          path: result.jtl
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run JMeter Test with Latest Image
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}/tests:/tests \
+          ghcr.io/apache/jmeter:latest \
+          -n -t /Testplans/load_test.jmx -l result.jtl
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: jmeter-results
+        path: tests/result.jtl
