@@ -30,10 +30,10 @@ jobs:
         docker run --rm \
           -v ${{ github.workspace }}/Testplans:/Testplans \
           justb4/jmeter \
-          -n -t /Testplans/jpet.jmx -l result.jtl
+          -n -t /Testplans/jpet.jmx -l jpet.jtl
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v4
       with:
         name: jmeter-results
-        path: tests/result.jtl
+        path: result.jtl
