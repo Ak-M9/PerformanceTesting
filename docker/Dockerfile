@@ -7,7 +7,7 @@ ENV JMETER_HOME /apache-jmeter-${JMETER_VERSION}
 ENV PATH $JMETER_HOME/bin:$PATH
 
 # Download and install JMeter
-RUN apt -get update && apt-get install -y wget curl \ && wget -q https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.zip -O /tmp/jmeter.zip \ && unzip /tmp/jmeter.zip -d / \ && rm /tmp/jmeter.zip \ && apt-get clean \ && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget curl \ && wget -q https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.zip -O /tmp/jmeter.zip \ && unzip /tmp/jmeter.zip -d / \ && rm /tmp/jmeter.zip \ && apt-get clean \ && rm -rf /var/lib/apt/lists/*
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
