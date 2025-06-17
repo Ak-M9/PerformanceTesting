@@ -15,7 +15,7 @@ jobs:
           run: docker build -t jmeter-runner ./docker
 
         - name: Run JMeter test script
-          run: docker run --rm -v ${{ github.workspace }}/Testplans:/Testplans jmeter-runner /Testplans/yourJmeterscript.jmx
+          run: docker run --rm -v ${{ github.workspace }}/Testplans:/Testplans jmeter-runner /Testplans/jpet.jmx
 
         - name: Upload JMeter Results
           if: success() || failure()
