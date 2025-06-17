@@ -13,7 +13,7 @@ name: sample
 #         default: ''
 
 on:
-  push:
+#  push:
     branches:
       - main
 
