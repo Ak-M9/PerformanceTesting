@@ -13,9 +13,9 @@ name: sample
 #         default: ''
 
 on:
-#  push:
-    branches:
-      - main
+   workflow_dispatch:
+       # inputs:
+       #    - main
 
 jobs:
   jmeter-latest-run:
