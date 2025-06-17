@@ -1,5 +1,5 @@
 # Use a lightweight base image
-FROM openjdk:11-jre-slim
+FROM openjdk: 11-jre-slim
 
 # Set environment variables for JMeter
 ENV JMETER_VERSION 5.6.3
