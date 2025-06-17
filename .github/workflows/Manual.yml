@@ -16,6 +16,11 @@ jobs:
 
         - name: Run JMeter test script
           run: docker run --rm -v ${{ github.workspace }}/Testplans:/Testplans jmeter-runner /Testplans/jpet.jmx
+        
+        # - name: Zip Testplans Folder
+        #     run: |
+        #       cd Testplans
+        #       zip -r jmeter-artifacts.zip ./*
 
         - name: Upload JMeter Results
           if: success() || failure()
