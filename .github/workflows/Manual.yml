@@ -12,7 +12,7 @@ jobs:
           uses: actions/checkout@v4
 
         - name: Build JMeter Docker image
-          run: docker build -t jmeter-runner ./dockerfile.sh
+          run: docker build -t jmeter-runner ./docker
 
         - name: Run JMeter test script
           run: docker run --rm -v ${{ github.workspace }}/Testplans:/Testplans jmeter-runner /Testplans/jpet.jmx
