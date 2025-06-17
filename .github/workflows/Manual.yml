@@ -22,14 +22,14 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: jmeter-results
-            path: jpet.jtl
+            path: /Testplans/jpet.jtl
             
         - name: Log JMeter Results
           if: success() || failure()
           uses: actions/upload-artifact@v4
           with:
             name: jmeter-results
-            path: jpet.log
+            path: /Testplans/jpet.log
             
             
         
