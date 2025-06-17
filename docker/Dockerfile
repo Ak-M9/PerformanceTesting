@@ -27,13 +27,13 @@ RUN apt-get update && apt-get install -y wget unzip ca-certificates \
  && rm -rf /tmp/* /var/lib/apt/lists/*
 
 # Copy entrypoint script
-# COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-# RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# # Set the working directory
-# WORKDIR $JMETER_HOME
+# Set the working directory
+WORKDIR $JMETER_HOME
 
-# # Entrypoint for the container
-# ENTRYPOINT ["entrypoint.sh"]
-WORKDIR /Testplans
-CMD ["jmeter", "-v"]
+# Entrypoint for the container
+ENTRYPOINT ["entrypoint.sh"]
+# WORKDIR /Testplans
+# CMD ["jmeter", "-v"]
